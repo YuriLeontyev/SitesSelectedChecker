@@ -4,10 +4,6 @@ namespace SitesSelectedChecker
 {
     internal class EntraIDApplication
     {
-        // Scopes required for CSOM with Sites.Selected delegated permission.
-        // The resource must always be the SharePoint tenant root (not a sub-site),
-        // and Sites.Selected must be requested explicitly (not via .default) so that
-        // the token actually contains the Sites.Selected claim.
         private static string[] CsomScopes(Uri tenantRoot) =>
             [
                 //$"{tenantRoot.Scheme}://{tenantRoot.Host}/AllSites.Read", // AllSites.Read requires additional permission granted by tenant admin
