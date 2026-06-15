@@ -63,18 +63,15 @@ namespace SitesSelectedChecker
 
         private async Task<string?> AuthenticatePublicAsync(IEnumerable<string> scopes)
         {
-            var accounts = await _publicClient.GetAccountsAsync();
-            IAccount? accountToUse = accounts.FirstOrDefault();
-
             var loginPrompt = _publicClient
                 .AcquireTokenInteractive(scopes)
-                .WithAccount(accountToUse)
                 .WithPrompt(Prompt.SelectAccount);
 
             AuthenticationResult authResult = await loginPrompt.ExecuteAsync();
 
             return authResult.AccessToken;
         }
+
         private static Uri GetTenantRootUri(string siteUrl)
         {
             var uri = new Uri(siteUrl);
